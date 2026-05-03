@@ -69,7 +69,7 @@
 - 人工接口：/api/human_reply（人工回复并可记录人工操作结果）  
 - 持久化：SQLite 表 Ticket / Message / KB（可扩展为向量 DB、Postgres 等）
 
-5. 可选增强点（与你要求的“链式推理/多 Agent”方向进一步强化建议）
+5. 可选增强点
 - 把 NLU 与生成完全迁移到强 LLM，并在 prompt 中显式要求“逐步验证每个槽位、列出可疑项与证据”，以获得可解释的链式推理步骤。  
 - 用向量数据库（Milvus/FAISS/Weaviate）替代内存/SQLite 的 KB embedding 存储，实现大规模 KB 检索与在线更新。  
 - 引入 Orchestrator（例如一个简单的 workflow 引擎）来编排多个 Agent 的调用、超时、并行检查（例如在路由前并行校验订单是否存在、支付状态、风控检查）。  
