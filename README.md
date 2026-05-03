@@ -3,6 +3,21 @@
 
 ---
 
+注意： 
+
+- 需安装依赖（见下面）。
+- 若想用 OpenAI 的 LLM 做 NLU / 生成，请设置环境变量 OPENAI_API_KEY。否则代码自动使用简单的规则/模板回退。
+- 仅为示范生产流程和架构，自动执行部分仅模拟；生产环境需加入鉴权、幂等、事务、审计、错误重试等保障。
+
+1. 依赖安装
+   pip install fastapi uvicorn sqlalchemy sentence-transformers numpy scikit-learn python-dotenv openai
+2. 将下列代码保存为 ai_ticket_agent.py 并运行：
+   python ai_ticket_agent.py
+3. 示例调用（用 curl）：
+   curl -X POST "http://127.0.0.1:8000/api/message " -H "Content-Type: application/json" -d '{"user_id":"user_1","text":"我想退订单12345，金额100元","channel":"web"}' 
+
+---
+
 1. 项目解决的核心痛点（Core pain points）
 - 客服回复不一致：  
   - 方案：统一由 NLU + 知识库检索 + LLM 生成回复草稿，保证用同一知识与模板生成每次回复，减少人工个体差异。  
